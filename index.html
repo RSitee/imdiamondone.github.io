@@ -13,17 +13,20 @@
 
     <style>
         body {
-            background: linear-gradient(90deg, #ff0000, #8b0000);
+            background: linear-gradient(90deg, #ff0000, #ff0088);
             color: #ffffff;
             font-family: 'Share Tech Mono', monospace;
             text-align: center;
             padding: 20px;
-            animation: backgroundTransition 5s infinite alternate;
+            animation: backgroundTransition 10s infinite alternate;
         }
+
         @keyframes backgroundTransition {
             0% { background: #ff0000; }
-            100% { background: #8b0000; }
+            50% { background: #8b0000; }
+            100% { background: #ff0088; }
         }
+
         .ascii {
             white-space: pre;
             font-size: 14px;
@@ -32,11 +35,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            animation: textTransition 3s infinite alternate;
         }
+
+        @keyframes textTransition {
+            0% { color: #ff0000; }
+            25% { color: #ff4d4d; }
+            50% { color: #ff6666; }
+            75% { color: #ff4d4d; }
+            100% { color: #ff0000; }
+        }
+
         h1 {
             font-size: 3rem;
             text-shadow: 0 0 10px #ff0000;
+            animation: textTransition 3s infinite alternate;
         }
+
         .btn-download {
             display: inline-block;
             padding: 15px 30px;
@@ -50,29 +66,38 @@
             box-shadow: 0 0 15px #ff0000;
             transition: 0.3s;
         }
+
         .btn-download:hover {
             background: #8b0000;
             box-shadow: 0 0 25px #8b0000;
         }
+
         .container {
             max-width: 800px;
             margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         .navbar {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-bottom: 20px;
         }
+
         .navbar a {
             color: #ffffff;
             text-decoration: none;
             font-size: 18px;
             transition: 0.3s;
         }
+
         .navbar a:hover {
             color: #ff0000;
         }
+
         footer {
             margin-top: 50px;
             font-size: 12px;
@@ -88,7 +113,6 @@
     <div class="container">
         <div class="ascii">
             <pre>
-
                                                                                                                         '                                                                             )`·.                             /(      .·´    (          
                                                                                           '                                                                                               /(      .·´    (                    )\      )  `·._):::.    )        ’'
             (`·.               )\                       (`·.              )\             (`·.               )\'                            )\       )\                            )\      )  `·._):::.    )        ’'   )\ .·´ .:`·.(:;;  --  ' '\:. :(           
