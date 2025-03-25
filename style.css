@@ -6,8 +6,8 @@
 }
 
 body {
-    background: linear-gradient(90deg, #ff0000, #ff0088);
-    color: #ffffff;
+    background: linear-gradient(90deg, #2e2e2e, #444444);
+    color: #dcdcdc;
     font-family: 'Share Tech Mono', monospace;
     text-align: center;
     padding: 20px;
@@ -15,16 +15,16 @@ body {
 }
 
 @keyframes backgroundTransition {
-    0% { background: #ff0000; }
-    50% { background: #8b0000; }
-    100% { background: #ff0088; }
+    0% { background: #2e2e2e; }
+    50% { background: #444444; }
+    100% { background: #2e2e2e; }
 }
 
 .ascii {
     white-space: pre;
     font-size: 14px;
-    color: #ffffff;
-    text-shadow: 0 0 10px #ff0000;
+    color: #dcdcdc;
+    text-shadow: 0 0 5px #ff0000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,6 +44,7 @@ h1 {
     font-size: 3rem;
     text-shadow: 0 0 10px #ff0000;
     animation: textTransition 3s infinite alternate;
+    margin-top: 20px;
 }
 
 .btn-download {
@@ -81,7 +82,7 @@ h1 {
 }
 
 .navbar a {
-    color: #ffffff;
+    color: #dcdcdc;
     text-decoration: none;
     font-size: 18px;
     transition: 0.3s;
