@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIRACY EXECUTOR</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
@@ -24,7 +23,6 @@
             position: relative;
         }
 
-        /* Glow effect */
         body::after {
             content: "";
             position: fixed;
@@ -38,7 +36,6 @@
             backdrop-filter: blur(1px);
         }
 
-        /* Scanlines */
         body::before {
             content: "";
             position: fixed;
@@ -215,24 +212,6 @@
             box-shadow: 0 -1px 15px #ff000033;
             text-align: center;
             user-select: none;
-        }
-
-        @keyframes type {
-            0% {
-                width: 0;
-                opacity: 1;
-            }
-
-            100% {
-                width: 15ch;
-                opacity: 1;
-            }
-        }
-
-        @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
         }
     </style>
 </head>
