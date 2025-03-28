@@ -23,9 +23,21 @@
             font-family: 'Share Tech Mono', monospace;
             overflow-x: hidden;
             position: relative;
+            cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy533c3bmnQ'),
         }
 
-        /* Bloom / CRT effect */
+        .cursor {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255,0,0,0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: all 0.2s ease;
+        }
+
         body::after {
             content: "";
             position: fixed;
@@ -39,7 +51,6 @@
             backdrop-filter: blur(1px);
         }
 
-        /* Scanlines */
         body::before {
             content: "";
             position: fixed;
@@ -95,7 +106,6 @@
             width: 100%;
         }
 
-        /* Glitchy ASCII Text */
         .ascii {
             white-space: pre;
             font-size: 16px;
@@ -216,7 +226,6 @@
             }
         }
 
-        /* Terminal Input Password Effect */
         #password-input {
             border: none;
             background: transparent;
@@ -231,8 +240,6 @@
 </head>
 
 <body>
-
-    <!-- Particles Background -->
     <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
 
     <div class="navbar">
@@ -241,12 +248,8 @@
     </div>
 
     <div class="container">
-
-        <!-- Home Tab -->
         <div id="home" class="tab-content active">
-            <!-- ASCII Art -->
             <div class="ascii">
-
                                                                                                                       
                                                                                                                       
 PPPPPPPPPPPPPPPPP     iiii  RRRRRRRRRRRRRRRRR                  AAA                  CCCCCCCCCCCCCYYYYYYY       YYYYYYY
@@ -265,43 +268,49 @@ PP::::::PP          i::::::iRR:::::R     R:::::R   A:::::A             A:::::AC:
 P::::::::P          i::::::iR::::::R     R:::::R  A:::::A               A:::::ACC:::::::::::::::C    YYYY:::::YYYY    
 P::::::::P          i::::::iR::::::R     R:::::R A:::::A                 A:::::A CCC::::::::::::C    Y:::::::::::Y    
 PPPPPPPPPP          iiiiiiiiRRRRRRRR     RRRRRRRAAAAAAA                   AAAAAAA   CCCCCCCCCCCCC    YYYYYYYYYYYYY    
-             </div>
+            </div>
             <h1>PIRACY</h1>
             <p>The ultimate executor. Released 3/25/25, Fast execution.</p>
             <p>Fast, Reliable, 100 UNC, 100 sUNC.</p>
         </div>
 
-        <!-- Download Tab -->
         <div id="download" class="tab-content">
             <h2>Download PIRACY Today!</h2>
             <a href="about:blank" class="btn-download">Download Now</a>
             <a href="https://discord.gg/DaQmuSzgKG" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Join Discord</a>
         </div>
-
     </div>
 
     <footer>
         <p>&copy; 2025 PIRACYExecutor | All Rights Reserved</p>
     </footer>
 
-    <!-- Password Animation -->
     <div class="container">
         <input id="password-input" type="text" placeholder="ENTER PASSWORD">
     </div>
 
     <script>
-        // Particles.js Initialization
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 100 },
-                color: { value: '#ff0000' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.5 },
-                size: { value: 5 }
-            }
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            cursor.style.left = `${e.pageX}px`;
+            cursor.style.top = `${e.pageY}px`;
         });
 
-        // Tab Switching
+        const cursorDiv = document.createElement('div');
+        cursorDiv.classList.add('cursor');
+        document.body.appendChild(cursorDiv);
+
+        const adminPassword = 'PIR&CY25';
+        async function checkPassword(input) {
+            const response = await fetch(`https://pastebin.com/raw/JjHubLgu`);
+            const pasteContent = await response.text();
+            if (pasteContent.trim() === input) {
+                alert('Access granted.');
+            } else {
+                alert('Incorrect.');
+            }
+        }
+
         function showTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
