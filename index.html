@@ -35,6 +35,27 @@
       padding: 20px;
     }
 
+    .top-right-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .top-right-button a {
+      background-color: #ffffff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 10px #ffffff33;
+    }
+
+    .top-right-button a:hover {
+      background-color: #ddd;
+    }
+
     h1 {
       font-size: 3em;
       color: #ffffff;
@@ -54,7 +75,7 @@
       border-radius: 16px;
       padding: 30px;
       backdrop-filter: blur(8px);
-      max-width: 400px;
+      max-width: 500px;
       width: 90%;
       box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
@@ -74,10 +95,10 @@
     .description {
       color: #ccc;
       font-size: 1em;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
-    .discord-button {
+    .buy-button {
       background-color: #ffffff;
       color: #000;
       padding: 12px 24px;
@@ -88,10 +109,20 @@
       text-decoration: none;
       transition: 0.3s ease;
       box-shadow: 0 0 10px #ffffff33;
+      display: inline-block;
+      margin-bottom: 20px;
     }
 
-    .discord-button:hover {
+    .buy-button:hover {
       background-color: #ddd;
+    }
+
+    .steps {
+      text-align: left;
+      color: #ccc;
+      font-size: 0.95em;
+      line-height: 1.6em;
+      margin-top: 10px;
     }
 
     footer {
@@ -109,21 +140,35 @@
 
 <canvas id="bg"></canvas>
 
+<div class="top-right-button">
+  <a href="https://discord.com/users/YOURIDHERE" target="_blank">Contact Us</a>
+</div>
+
 <div class="container">
   <h1>💸 Dominus SS</h1>
   <h2>Robux-Only Payment Portal</h2>
 
   <div class="payment-box">
-    <img class="robux-icon" src="https://static.wikia.nocookie.net/roblox/images/4/41/Robux.png/revision/latest?cb=20201009024025&path-prefix=es" alt="Robux Icon">
+    <img class="robux-icon" src="https://tr.rbxcdn.com/e6b2fdba08f2d4201a34f1b53b4db3df/150/150/Image/Png" alt="Robux Icon">
     <div class="method-title">Robux Only</div>
-    <p class="description">We accept Robux through Gamepasses or Developer Products.</p>
-    <a class="discord-button" href="https://discord.com/users/YOURIDHERE" target="_blank">Contact Us on Discord</a>
+    <p class="description">Use Robux to purchase Dominus SS securely and easily.</p>
+    <a class="buy-button" href="https://www.roblox.com/games/YOUR_GAMEPASS_ID_HERE" target="_blank">Buy SS</a>
+    <div class="steps">
+      <strong>Steps:</strong>
+      <ol>
+        <li>Make sure you have <strong>1,000 Robux</strong> (≈ $10)</li>
+        <li>Buy this gamepass: <a href="https://www.roblox.com/games/YOUR_GAMEPASS_ID_HERE" target="_blank">Click Here</a></li>
+        <li>Go to <a href="https://www.roblox.com/my/transactions" target="_blank">roblox.com/my/transactions</a></li>
+        <li>Send us a screenshot of the transaction</li>
+        <li>Wait for admin confirmation</li>
+        <li>Enjoy your Dominus SS access!</li>
+      </ol>
+    </div>
   </div>
 </div>
 
 <footer>Dominus SS © 2025 • Secure & Fast Service</footer>
 
-<!-- Geometric Background Effect -->
 <script>
   const canvas = document.getElementById('bg');
   const ctx = canvas.getContext('2d');
@@ -168,7 +213,6 @@
         p.y = Math.random() * height;
       }
 
-      // draw lines to nearby points
       for (let j = i + 1; j < points.length; j++) {
         const q = points[j];
         const dx = p.x - q.x;
