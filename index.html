@@ -9,54 +9,54 @@
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Orbitron', sans-serif;
       height: 100%;
-      background-color: #0a0a0a;
-      color: #fff;
       overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
     }
 
-    #bg {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
       z-index: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0a0a;
     }
 
     .container {
       position: relative;
       z-index: 1;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
       padding: 20px;
     }
 
     h1 {
       font-size: 3em;
-      color: #e0e0e0;
-      margin-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 0 0 10px #aaa;
+      margin-bottom: 0.2em;
     }
 
     h2 {
-      font-size: 1.5em;
-      color: #b0b0b0;
-      margin-bottom: 30px;
+      color: #bbb;
+      font-weight: normal;
+      margin-bottom: 1.5em;
     }
 
     .payment-box {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid #444;
-      padding: 30px;
       border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(8px);
       max-width: 400px;
-      backdrop-filter: blur(6px);
+      width: 90%;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
     }
 
     .robux-icon {
@@ -66,15 +66,15 @@
     }
 
     .method-title {
-      font-size: 1.5em;
-      color: #ffffff;
+      font-size: 1.6em;
       margin-bottom: 10px;
+      color: #fff;
     }
 
     .description {
       color: #ccc;
-      font-size: 0.95em;
-      margin-bottom: 20px;
+      font-size: 1em;
+      margin-bottom: 25px;
     }
 
     .discord-button {
@@ -82,15 +82,16 @@
       color: #000;
       padding: 12px 24px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: bold;
+      font-size: 1em;
       text-decoration: none;
-      transition: 0.3s;
-      display: inline-block;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #ffffff33;
     }
 
     .discord-button:hover {
-      background-color: #e0e0e0;
+      background-color: #ddd;
     }
 
     footer {
@@ -98,8 +99,8 @@
       bottom: 20px;
       width: 100%;
       text-align: center;
-      font-size: 0.85em;
-      color: #777;
+      font-size: 0.9em;
+      color: #888;
       z-index: 1;
     }
   </style>
@@ -110,80 +111,85 @@
 
 <div class="container">
   <h1>💸 Dominus SS</h1>
-  <h2>Robux-Only Payment System</h2>
+  <h2>Robux-Only Payment Portal</h2>
 
   <div class="payment-box">
-    <img class="robux-icon" src="https://tr.rbxcdn.com/e6b2fdba08f2d4201a34f1b53b4db3df/150/150/Image/Png" alt="Robux Icon">
-    <div class="method-title">Robux Accepted Only</div>
-    <p class="description">We accept payments through Gamepasses or Shirts.</p>
+    <img class="robux-icon" src="https://static.wikia.nocookie.net/roblox/images/4/41/Robux.png/revision/latest?cb=20201009024025&path-prefix=es" alt="Robux Icon">
+    <div class="method-title">Robux Only</div>
+    <p class="description">We accept Robux through Gamepasses or Developer Products.</p>
     <a class="discord-button" href="https://discord.com/users/YOURIDHERE" target="_blank">Contact Us on Discord</a>
   </div>
 </div>
 
-<footer>
-  More payment options coming soon. Last updated 2025.
-</footer>
+<footer>Dominus SS © 2025 • Secure & Fast Service</footer>
 
-<!-- Animated geometric triangle background -->
+<!-- Geometric Background Effect -->
 <script>
-  const canvas = document.getElementById("bg");
-  const ctx = canvas.getContext("2d");
+  const canvas = document.getElementById('bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let points = [];
 
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  canvas.width = width;
-  canvas.height = height;
-
-  const triangles = [];
-  const TRIANGLE_COUNT = 60;
-
-  function createTriangle() {
-    return {
-      x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 40 + 10,
-      dx: Math.random() * 0.5 - 0.25,
-      dy: Math.random() * 0.5 - 0.25,
-      opacity: Math.random() * 0.4 + 0.1
-    };
-  }
-
-  for (let i = 0; i < TRIANGLE_COUNT; i++) {
-    triangles.push(createTriangle());
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = "#555";
-
-    triangles.forEach(tri => {
-      ctx.globalAlpha = tri.opacity;
-      ctx.beginPath();
-      ctx.moveTo(tri.x, tri.y);
-      ctx.lineTo(tri.x + tri.size, tri.y);
-      ctx.lineTo(tri.x + tri.size / 2, tri.y - tri.size);
-      ctx.closePath();
-      ctx.stroke();
-
-      tri.x += tri.dx;
-      tri.y += tri.dy;
-
-      if (tri.x < -50 || tri.x > width + 50 || tri.y < -50 || tri.y > height + 50) {
-        Object.assign(tri, createTriangle());
-      }
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-
-  window.addEventListener("resize", () => {
+  function resize() {
     width = window.innerWidth;
     height = window.innerHeight;
     canvas.width = width;
     canvas.height = height;
-  });
+    generatePoints();
+  }
+
+  function generatePoints() {
+    points = [];
+    const spacing = 60;
+    for (let x = 0; x < width; x += spacing) {
+      for (let y = 0; y < height; y += spacing) {
+        points.push({
+          x: x + Math.random() * 10 - 5,
+          y: y + Math.random() * 10 - 5,
+          dx: (Math.random() - 0.5) * 0.3,
+          dy: (Math.random() - 0.5) * 0.3
+        });
+      }
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1;
+
+    for (let i = 0; i < points.length; i++) {
+      const p = points[i];
+      p.x += p.dx;
+      p.y += p.dy;
+
+      if (p.x < 0 || p.x > width || p.y < 0 || p.y > height) {
+        p.x = Math.random() * width;
+        p.y = Math.random() * height;
+      }
+
+      // draw lines to nearby points
+      for (let j = i + 1; j < points.length; j++) {
+        const q = points[j];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          ctx.globalAlpha = 1 - dist / 100;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
 </script>
 
 </body>
