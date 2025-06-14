@@ -1,87 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dominus SS - Robux Payments</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    body {
-      background-color: #0e0e0e;
-      color: #ffffff;
+    html, body {
+      margin: 0;
+      padding: 0;
       font-family: 'Orbitron', sans-serif;
+      height: 100%;
+      background-color: #0a0a0a;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      height: 100vh;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
       font-size: 3em;
-      color: #00ffcc;
-      margin-bottom: 0.2em;
+      color: #e0e0e0;
+      margin-bottom: 10px;
     }
 
     h2 {
-      color: #ffffff;
-      margin-bottom: 1em;
+      font-size: 1.5em;
+      color: #b0b0b0;
+      margin-bottom: 30px;
     }
 
     .payment-box {
-      background: #1c1c1c;
-      border: 2px solid #444;
-      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
       padding: 30px;
+      border-radius: 16px;
       max-width: 400px;
-      transition: 0.3s;
-    }
-
-    .payment-box:hover {
-      border-color: #00ffcc;
-      box-shadow: 0 0 15px #00ffcc44;
+      backdrop-filter: blur(6px);
     }
 
     .robux-icon {
-      width: 60px;
-      height: 60px;
+      width: 64px;
+      height: 64px;
       margin-bottom: 15px;
     }
 
     .method-title {
       font-size: 1.5em;
       color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #ccc;
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+
+    .discord-button {
+      background-color: #ffffff;
+      color: #000;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .discord-button:hover {
+      background-color: #e0e0e0;
     }
 
     footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #888;
-    }
-
-    .discord-tag {
-      margin-top: 10px;
-      color: #00ffcc;
-      font-weight: bold;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.85em;
+      color: #777;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
 
+<canvas id="bg"></canvas>
+
+<div class="container">
   <h1>💸 Dominus SS</h1>
-  <h2>Accepted Payment Method</h2>
+  <h2>Robux-Only Payment System</h2>
 
   <div class="payment-box">
     <img class="robux-icon" src="https://tr.rbxcdn.com/e6b2fdba08f2d4201a34f1b53b4db3df/150/150/Image/Png" alt="Robux Icon">
-    <div class="method-title">Robux Only</div>
-    <p>We accept Robux via Gamepass or Shirt.</p>
-    <p class="discord-tag">Contact us on Discord: dominusss#0001</p>
+    <div class="method-title">Robux Accepted Only</div>
+    <p class="description">We accept payments through Gamepasses or Shirts.</p>
+    <a class="discord-button" href="https://discord.com/users/YOURIDHERE" target="_blank">Contact Us on Discord</a>
   </div>
+</div>
 
-  <footer>
-    More payment options coming soon.
-  </footer>
+<footer>
+  More payment options coming soon. Last updated 2025.
+</footer>
+
+<!-- Animated geometric triangle background -->
+<script>
+  const canvas = document.getElementById("bg");
+  const ctx = canvas.getContext("2d");
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  const triangles = [];
+  const TRIANGLE_COUNT = 60;
+
+  function createTriangle() {
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 40 + 10,
+      dx: Math.random() * 0.5 - 0.25,
+      dy: Math.random() * 0.5 - 0.25,
+      opacity: Math.random() * 0.4 + 0.1
+    };
+  }
+
+  for (let i = 0; i < TRIANGLE_COUNT; i++) {
+    triangles.push(createTriangle());
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = "#555";
+
+    triangles.forEach(tri => {
+      ctx.globalAlpha = tri.opacity;
+      ctx.beginPath();
+      ctx.moveTo(tri.x, tri.y);
+      ctx.lineTo(tri.x + tri.size, tri.y);
+      ctx.lineTo(tri.x + tri.size / 2, tri.y - tri.size);
+      ctx.closePath();
+      ctx.stroke();
+
+      tri.x += tri.dx;
+      tri.y += tri.dy;
+
+      if (tri.x < -50 || tri.x > width + 50 || tri.y < -50 || tri.y > height + 50) {
+        Object.assign(tri, createTriangle());
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener("resize", () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+</script>
 
 </body>
 </html>
